@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from app.api.chat import router as chat_router
 
 
 app = FastAPI(
@@ -7,9 +8,4 @@ app = FastAPI(
     version="0.1"
 )
 
-
-@app.get("/")
-def home():
-    return {
-        "message": "Spotify-AI backend is running"
-    }
+app.include_router(chat_router)

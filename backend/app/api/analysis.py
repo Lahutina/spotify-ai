@@ -17,13 +17,11 @@ orchestrator = AIOrchestrator()
 
 
 @router.post(
-    "/chat",
+    "/analyze/mood",
     response_model=MusicProfile,
 )
 def chat(
     request: ChatRequest,
 ):
 
-    return orchestrator.generate_music_profile(
-        request.message
-    )
+    return orchestrator.generate_music_profile(request.message)

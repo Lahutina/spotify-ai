@@ -1,21 +1,24 @@
 import spotipy
 
 from spotipy.oauth2 import SpotifyClientCredentials
+from app.spotify.spotify_api import SpotifyAPI
+from app.spotify.recommender import SpotifyRecommender
 
-from app.spotify.client import SpotifyClient
-from app.spotify.service import SpotifyService
-from app.core.config import SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET
+from app.core.config import (
+    SPOTIFY_CLIENT_ID,
+    SPOTIFY_CLIENT_SECRET,
+)
 
 
-def get_spotify_service():
+def get_spotify():
 
-    spotify = spotipy.Spotify(
+    client = spotipy.Spotify(
         auth_manager=SpotifyClientCredentials(
             client_id=SPOTIFY_CLIENT_ID,
-            client_secret=SPOTIFY_CLIENT_SECRET
+            client_secret=SPOTIFY_CLIENT_SECRET,
         )
     )
 
-    client = SpotifyClient(spotify)
+    api = SpotifyAPI(client)
 
-    return SpotifyService(client)
+    return SpotifyRecommender(api)

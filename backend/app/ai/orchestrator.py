@@ -1,7 +1,5 @@
 from app.ai.providers.openai_provider import OpenAIProvider
-
 from app.ai.schemas.music_profile import MusicProfile
-
 from app.core.prompt_loader import load_prompt
 
 

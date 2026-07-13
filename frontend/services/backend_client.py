@@ -15,3 +15,15 @@ def analyze_mood(message: str):
     response.raise_for_status()
 
     return response.json()
+
+
+def get_recommendations(profile):
+
+    response = requests.post(
+        f"{BACKEND_URL}/recommend",
+        json=profile
+    )
+
+    response.raise_for_status()
+
+    return response.json()

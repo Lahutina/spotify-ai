@@ -16,8 +16,8 @@ def render_sidebar():
         
         ✅ Mood analysis
         
-        🔜 Photo → Music
+        🦋 Photo → Music
         
-        🔜 Album Cover Analysis
+        🥃 Album Cover Analysis
         """
     )

@@ -1,10 +1,13 @@
 import streamlit as st
 
-from services.backend_client import analyze_mood, get_recommendations
+from services.backend_client import (
+    analyze_mood, 
+    analyze_image,
+    get_recommendations,
+)
 from components.mood_analysis import display_mood_analysis
 from components.tracks import display_tracks
 from components.sidebar import render_sidebar
-
 
 st.set_page_config(page_title="Spotify AI", page_icon="🎵", layout="centered")
 
@@ -40,3 +43,49 @@ with tab1:
                 recommendation = get_recommendations(profile)
 
             display_tracks(recommendation["tracks"])
+
+
+
+with tab2:
+
+    uploaded_image = st.file_uploader(
+        "Upload an image that represents your mood",
+        type=[
+            "jpg",
+            "jpeg",
+            "png"
+        ]
+    )
+
+
+    if st.button("Generate Music From Image"):
+
+        if uploaded_image:
+
+            st.image(
+                uploaded_image,
+                caption="Your image",
+                use_container_width=True
+            )
+
+
+            with st.spinner("Understanding image mood..."):
+
+                profile = analyze_image(
+                    uploaded_image
+                )
+
+
+            display_mood_analysis(profile)
+
+
+            with st.spinner("Finding music for you..."):
+
+                recommendation = get_recommendations(
+                    profile
+                )
+
+
+            display_tracks(
+                recommendation["tracks"]
+            )

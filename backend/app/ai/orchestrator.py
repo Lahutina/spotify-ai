@@ -11,7 +11,7 @@ class AIOrchestrator:
 
     def generate_music_profile(
         self,
-        user_message: str
+        content
     ) -> MusicProfile:
 
         prompt = load_prompt(
@@ -19,6 +19,6 @@ class AIOrchestrator:
         )
 
         return self.provider.generate_music_profile(
-            user_message=user_message,
+            content=content,
             system_prompt=prompt,
         )

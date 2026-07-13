@@ -17,6 +17,24 @@ def analyze_mood(message: str):
     return response.json()
 
 
+def analyze_image(image):
+
+    response = requests.post(
+        f"{BACKEND_URL}/analyze/image",
+        files={
+            "file": (
+                image.name,
+                image.getvalue(),
+                image.type
+            )
+        }
+    )
+
+    response.raise_for_status()
+
+    return response.json()
+
+
 def get_recommendations(profile):
 
     response = requests.post(

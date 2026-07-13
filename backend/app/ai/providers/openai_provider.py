@@ -15,7 +15,7 @@ class OpenAIProvider(LLMProvider):
 
     def generate_music_profile(
         self,
-        user_message: str,
+        content,
         system_prompt: str
     ) -> MusicProfile:
 
@@ -28,7 +28,7 @@ class OpenAIProvider(LLMProvider):
                 },
                 {
                     "role": "user",
-                    "content": user_message,
+                    "content": content,
                 },
             ],
             text_format=MusicProfile,

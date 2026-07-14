@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 
-from app.ai.schemas.music_profile import MusicProfile
+from app.schemas.music_profile import MusicProfile
 from app.spotify.dependencies import get_spotify
 from app.spotify.recommender import SpotifyRecommender
 
@@ -16,6 +16,4 @@ def recommend(
 
     tracks = spotify.recommend(profile)
 
-    return {
-        "tracks": tracks
-    }
+    return {"tracks": tracks}

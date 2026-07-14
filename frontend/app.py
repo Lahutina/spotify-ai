@@ -1,13 +1,15 @@
 import streamlit as st
 
 from services.backend_client import (
-    analyze_mood, 
+    analyze_mood,
     analyze_image,
+    analyze_album_cover,
     get_recommendations,
 )
 from components.mood_analysis import display_mood_analysis
 from components.tracks import display_tracks
 from components.sidebar import render_sidebar
+from components.album_analysis import display_album_analysis
 
 st.set_page_config(page_title="Spotify AI", page_icon="🎵", layout="centered")
 
@@ -88,4 +90,44 @@ with tab2:
 
             display_tracks(
                 recommendation["tracks"]
+            )
+
+
+with tab3:
+
+    uploaded_album = st.file_uploader(
+        "Upload an album cover",
+        type=[
+            "jpg",
+            "jpeg",
+            "png"
+        ],
+        key="album"
+    )
+
+
+    if st.button(
+        "Analyze Album Cover"
+    ):
+
+        if uploaded_album:
+
+            st.image(
+                uploaded_album,
+                caption="Album cover",
+                use_container_width=True
+            )
+
+
+            with st.spinner(
+                "Identifying album..."
+            ):
+
+                album = analyze_album_cover(
+                    uploaded_album
+                )
+
+
+            display_album_analysis(
+                album
             )

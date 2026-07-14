@@ -1,6 +1,6 @@
 import random
 
-from app.ai.schemas.music_profile import MusicProfile
+from app.schemas.music_profile import MusicProfile
 
 
 VALID_SPOTIFY_GENRES = {
@@ -44,22 +44,14 @@ def music_profile_to_search_queries(profile: MusicProfile):
         genres = ["pop"]
 
     for genre in genres:
-
         queries.append(f"genre:{genre}")
 
-        queries.append(
-            f"genre:{genre} {profile.mood}"
-        )
+        queries.append(f"genre:{genre} {profile.mood}")
 
-        queries.append(
-            f"genre:{genre} {profile.vocals}"
-        )
+        queries.append(f"genre:{genre} {profile.vocals}")
 
         for instrument in profile.instruments:
-
-            queries.append(
-                f"genre:{genre} {instrument}"
-            )
+            queries.append(f"genre:{genre} {instrument}")
 
     random.shuffle(queries)
 

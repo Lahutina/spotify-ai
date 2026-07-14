@@ -4,7 +4,6 @@ from app.spotify.query_builder import music_profile_to_search_queries
 
 
 class SpotifyRecommender:
-
     def __init__(self, api):
         self.api = api
 
@@ -15,9 +14,7 @@ class SpotifyRecommender:
         tracks = []
 
         for query in queries:
-            tracks.extend(
-                self.api.search_tracks(query)
-            )
+            tracks.extend(self.api.search_tracks(query))
 
         unique = {}
 
@@ -34,7 +31,8 @@ class SpotifyRecommender:
                 "artist": track["artists"][0]["name"],
                 "album": track["album"]["name"],
                 "image": track["album"]["images"][0]["url"]
-                if track["album"]["images"] else None,
+                if track["album"]["images"]
+                else None,
                 "spotify_url": track["external_urls"]["spotify"],
             }
             for track in recommendations[:20]

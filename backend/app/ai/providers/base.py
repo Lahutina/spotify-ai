@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from app.ai.schemas.music_profile import MusicProfile
+from app.schemas.music_profile import MusicProfile
 
 
 class LLMProvider(ABC):

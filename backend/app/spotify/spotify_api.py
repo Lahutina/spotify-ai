@@ -2,7 +2,6 @@ import spotipy
 
 
 class SpotifyAPI:
-
     def __init__(self, client: spotipy.Spotify):
         self.client = client
 

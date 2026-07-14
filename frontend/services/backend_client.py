@@ -45,3 +45,21 @@ def get_recommendations(profile):
     response.raise_for_status()
 
     return response.json()
+
+
+def analyze_album_cover(image):
+
+    response = requests.post(
+        f"{BACKEND_URL}/analyze/album",
+        files={
+            "file": (
+                image.name,
+                image,
+                image.type
+            )
+        }
+    )
+
+    response.raise_for_status()
+
+    return response.json()
